@@ -14,9 +14,11 @@ const PRODUCTS = [
     description: "Набор кастомных ретро-тем оформления ВКонтакте 2010 и стилей интерфейса для браузера.",
     version: "v1.1",
     image: "images/product1.png",
-    firefoxFileName: "huevo-themes-firefox.xpi",
+    firefoxFileName: "huevo-themes-firefox.zip",
+    firefoxXpiFileName: "huevo-themes-firefox.xpi",
     chromiumFileName: "huevo-themes-chromium.zip",
-    firefoxUrl: "https://github.com/neriusshadow/SWAGDEVhuEVOthemes/releases/download/v1.1/huevo-themes-firefox.xpi",
+    firefoxUrl: "https://github.com/neriusshadow/SWAGDEVhuEVOthemes/releases/download/v1.1/huevo-themes-firefox.zip",
+    firefoxXpiUrl: "https://github.com/neriusshadow/SWAGDEVhuEVOthemes/releases/download/v1.1/huevo-themes-firefox.xpi",
     chromiumUrl: "https://github.com/neriusshadow/SWAGDEVhuEVOthemes/releases/download/v1.1/huevo-themes-chromium.zip",
     githubRepoUrl: "https://github.com/neriusshadow/SWAGDEVhuEVOthemes",
     githubReleaseUrl: "https://github.com/neriusshadow/SWAGDEVhuEVOthemes/releases/tag/v1.1"
@@ -27,9 +29,11 @@ const PRODUCTS = [
     description: "Полноценный раздел «Игры» для huEVO в эстетике старого ВКонтакте с каталогом браузерных ретро-игр.",
     version: "v1.0",
     image: "images/product2.png",
-    firefoxFileName: "huevo-games-firefox.xpi",
+    firefoxFileName: "huevo-games-firefox.zip",
+    firefoxXpiFileName: "huevo-games-firefox.xpi",
     chromiumFileName: "huevo-games-chromium.zip",
-    firefoxUrl: "products/huevogames/huevo-games-firefox.xpi",
+    firefoxUrl: "products/huevogames/huevo-games-firefox.zip",
+    firefoxXpiUrl: "products/huevogames/huevo-games-firefox.xpi",
     chromiumUrl: "products/huevogames/huevo-games-chromium.zip"
   },
   {
@@ -38,9 +42,11 @@ const PRODUCTS = [
     description: "Плагин кастомизации для huEVO: заменяет все иконки и названия категорий на Федор Яйца.",
     version: "v0.67",
     image: "images/product3.png",
-    firefoxFileName: "fedorevo-firefox.xpi",
+    firefoxFileName: "fedorevo-firefox.zip",
+    firefoxXpiFileName: "fedorevo-firefox.xpi",
     chromiumFileName: "fedorevo-chromium.zip",
-    firefoxUrl: "products/fedorevo/fedorevo-firefox.xpi",
+    firefoxUrl: "products/fedorevo/fedorevo-firefox.zip",
+    firefoxXpiUrl: "products/fedorevo/fedorevo-firefox.xpi",
     chromiumUrl: "products/fedorevo/fedorevo-chromium.zip"
   }
 ];
@@ -423,6 +429,26 @@ function openDownloadModal(productId) {
     };
   }
 
+  const downloadFfXpiBtn = document.getElementById("downloadFfXpiBtn");
+  if (downloadFfXpiBtn) {
+    const xpiUrl = prod.firefoxXpiUrl || prod.firefoxUrl || "#";
+    const xpiName = prod.firefoxXpiFileName || "addon.xpi";
+    downloadFfXpiBtn.href = xpiUrl;
+    downloadFfXpiBtn.setAttribute("download", xpiName);
+    downloadFfXpiBtn.onclick = (e) => {
+      e.preventDefault();
+      const a = document.createElement("a");
+      a.href = xpiUrl;
+      a.download = xpiName;
+      a.target = "_blank";
+      a.rel = "noopener noreferrer";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      showToast(`Загрузка ${xpiName} запущена!`);
+    };
+  }
+
   const downloadCrBtn = document.getElementById("downloadCrFileBtn");
   if (downloadCrBtn) {
     downloadCrBtn.href = prod.chromiumUrl || "#";
@@ -681,7 +707,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (!state.activeProduct || !state.activeBrowserMode) return;
       const isFf = state.activeBrowserMode === "firefox";
       const guideText = isFf
-        ? `ИНСТРУКЦИЯ ПО УСТАНОВКЕ В FIREFOX:\n1. Скачайте ${state.activeProduct.firefoxFileName}\n2. В появившемся окне Firefox нажмите «Разрешить» и «Добавить»\n3. Или перейдите в about:addons -> шестеренка -> «Установить дополнение из файла...»`
+        ? `ИНСТРУКЦИЯ ПО УСТАНОВКЕ В FIREFOX:\n1. Скачайте архив ${state.activeProduct.firefoxFileName}\n2. Откройте в адресной строке Firefox: about:debugging#/runtime/this-firefox\n3. В блоке «Временные дополнения» нажмите «Загрузить временное дополнение...»\n4. Выберите скачанный .zip или .xpi файл.`
         : `ИНСТРУКЦИЯ ПО УСТАНОВКЕ В CHROMIUM:\n1. Скачайте архив ${state.activeProduct.chromiumFileName} и распакуйте его\n2. Откройте chrome://extensions/\n3. Включите «Режим разработчика» вверху справа\n4. Нажмите «Загрузить распакованное расширение» и укажите распакованную папку.`;
       copyTextToClipboard(guideText, "Текст инструкции скопирован!");
     });
