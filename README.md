@@ -34,15 +34,9 @@
 
 ---
 
-## 🚀 Развертывание на GitHub Pages:
+## 🌐 Онлайн-сайт на GitHub Pages:
 
-1. Создайте репозиторий на [GitHub](https://github.com/new).
-2. Загрузите файлы проекта в корень репозитория:
-   - `index.html`
-   - `style.css`
-   - `app.js`
-   - `.nojekyll`
-   - Папку `images/`
-   - Папку `sounds/`
-3. В репозитории откройте **Settings** ➔ **Pages** ➔ выберите **Deploy from a branch (main / root)** и нажмите **Save**.
-4. Сайт будет доступен по ссылке `https://<ваш_логин>.github.io/<имя_репозитория>/`.
+- **Рабочий сайт:** [https://neriusshadow.github.io/huevo-swagdev/](https://neriusshadow.github.io/huevo-swagdev/)
+- **Репозиторий сайта:** [neriusshadow/huevo-swagdev](https://github.com/neriusshadow/huevo-swagdev)
+- **Репозиторий huEVO themes:** [neriusshadow/SWAGDEVhuEVOthemes](https://github.com/neriusshadow/SWAGDEVhuEVOthemes)
+  - Релиз v1.1: [huEVO themes v1.1](https://github.com/neriusshadow/SWAGDEVhuEVOthemes/releases/tag/v1.1)
