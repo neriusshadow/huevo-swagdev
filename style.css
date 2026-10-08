@@ -1,0 +1,1547 @@
+/* ==========================================================================
+   huEVO SWAGdev — СТИЛИ КАТАЛОГА В ДУХЕ ВКОНТАКТЕ 2010 ГОДА
+   Сетка из 3 продуктов по фото-референсу, адаптированная для удобства
+   ========================================================================== */
+
+:root {
+  --vk-blue: #45668e;
+  --vk-blue-top: #4e729a;
+  --vk-blue-bottom: #395c83;
+  --vk-blue-dark: #2a4c72;
+  --vk-blue-btn-top: #6388b0;
+  --vk-blue-btn-bot: #486d95;
+  --vk-blue-btn-border: #35567a;
+  --vk-link: #2b587a;
+  --vk-link-hover: #183c5e;
+  --vk-bg-body: #f7f7f7;
+  --vk-card-bg: #ffffff;
+  --vk-border-card: #c8d3df;
+  --vk-border-light: #e4eaf0;
+  --vk-text: #222222;
+  --vk-text-muted: #666666;
+  --vk-font: Tahoma, Verdana, Arial, -apple-system, sans-serif;
+  --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(255, 255, 255, 0.8) inset;
+  --shadow-card-hover: 0 4px 14px rgba(69, 102, 142, 0.18), 0 0 0 1px #45668e inset;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--vk-font);
+  font-size: 12px;
+  line-height: 1.4;
+  color: var(--vk-text);
+  background-color: var(--vk-bg-body);
+  background-image: linear-gradient(180deg, #dce4ec 0%, #edf2f7 80px, #f7f7f7 260px);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: var(--vk-link);
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+/* --------------------------------------------------------------------------
+   ВЕРХНЯЯ ПАНЕЛЬ VK 2010 (huEVO SWAGdev)
+   -------------------------------------------------------------------------- */
+.vk-header-bar {
+  background: linear-gradient(to bottom, var(--vk-blue-top) 0%, var(--vk-blue-bottom) 100%);
+  border-bottom: 1px solid var(--vk-blue-dark);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  width: 100%;
+}
+
+.vk-header-inner {
+  max-width: 1080px;
+  margin: 0 auto;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+}
+
+.vk-brand-area {
+  display: flex;
+  align-items: center;
+}
+
+.vk-brand-logo {
+  text-decoration: none !important;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+}
+
+.brand-title {
+  font-size: 16px;
+  font-weight: bold;
+  letter-spacing: -0.2px;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+}
+
+.brand-accent {
+  color: #dbe8f8;
+  font-weight: normal;
+  margin-left: 2px;
+}
+
+.vk-nav-menu {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.vk-nav-pill {
+  background: none;
+  border: none;
+  color: #dbe6f5;
+  font-family: var(--vk-font);
+  font-size: 12px;
+  font-weight: bold;
+  padding: 5px 12px;
+  border-radius: 12px;
+  transition: all 0.15s ease;
+  cursor: pointer;
+  outline: none;
+  text-decoration: none !important;
+}
+
+.vk-nav-pill:hover {
+  background: rgba(255, 255, 255, 0.16);
+  color: #ffffff;
+}
+
+.vk-nav-pill.active {
+  background: rgba(0, 0, 0, 0.25);
+  color: #ffffff;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.35);
+}
+
+.vk-header-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.system-status-badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(0, 0, 0, 0.22);
+  padding: 3px 10px;
+  border-radius: 12px;
+  color: #e2f5e7;
+  font-size: 11px;
+  font-weight: bold;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #55d475;
+  box-shadow: 0 0 6px rgba(85, 212, 117, 0.85);
+  display: inline-block;
+}
+
+.status-dot.pulsing {
+  animation: pulseDot 2s infinite ease-in-out;
+}
+
+@keyframes pulseDot {
+  0% { transform: scale(0.95); opacity: 0.8; }
+  50% { transform: scale(1.2); opacity: 1; }
+  100% { transform: scale(0.95); opacity: 0.8; }
+}
+
+.sound-toggle-btn {
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+  border-radius: 4px;
+  padding: 4px 7px;
+  cursor: pointer;
+  font-size: 11px;
+  transition: background 0.15s;
+}
+
+.sound-toggle-btn:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+/* --------------------------------------------------------------------------
+   ОСНОВНОЙ КОНТЕЙНЕР
+   -------------------------------------------------------------------------- */
+.page-container {
+  max-width: 1080px;
+  margin: 20px auto 40px auto;
+  padding: 0 20px;
+  width: 100%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* --------------------------------------------------------------------------
+   ПАНЕЛЬ УПРАВЛЕНИЯ И ПОИСКА КАТАЛОГА
+   -------------------------------------------------------------------------- */
+.catalog-toolbar-panel {
+  background: #ffffff;
+  border: 1px solid var(--vk-border-card);
+  border-radius: 6px;
+  padding: 12px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  box-shadow: var(--shadow-card);
+}
+
+.toolbar-left {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.catalog-title {
+  font-size: 16px;
+  font-weight: bold;
+  color: var(--vk-link);
+}
+
+.catalog-subtitle {
+  color: var(--vk-text-muted);
+  font-size: 11.5px;
+}
+
+.toolbar-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.filter-tabs-group {
+  display: flex;
+  align-items: center;
+  background: #f1f4f8;
+  padding: 2px;
+  border-radius: 4px;
+  border: 1px solid #d5dfea;
+}
+
+.filter-tab {
+  background: none;
+  border: none;
+  padding: 5px 12px;
+  border-radius: 3px;
+  font-family: var(--vk-font);
+  font-size: 11.5px;
+  font-weight: bold;
+  color: var(--vk-link);
+  cursor: pointer;
+  transition: all 0.12s ease;
+}
+
+.filter-tab:hover {
+  color: var(--vk-link-hover);
+}
+
+.filter-tab.active {
+  background: #ffffff;
+  color: #222222;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12);
+}
+
+.search-box {
+  position: relative;
+}
+
+.vk-search-input {
+  width: 180px;
+  padding: 5px 9px;
+  font-size: 11.5px;
+  font-family: var(--vk-font);
+  border: 1px solid #c2cdd8;
+  border-radius: 3px;
+  outline: none;
+  background: #ffffff;
+  transition: border-color 0.15s, box-shadow 0.15s, width 0.2s;
+}
+
+.vk-search-input:focus {
+  border-color: var(--vk-blue);
+  width: 210px;
+  box-shadow: 0 0 4px rgba(69, 102, 142, 0.35);
+}
+
+/* --------------------------------------------------------------------------
+   СЕТКА 3 КАРТОЧЕК ПРОДУКТОВ (ТОЧНО КАК В РЕФЕРЕНСЕ ПОЛЬЗОВАТЕЛЯ)
+   -------------------------------------------------------------------------- */
+.products-grid-section {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  width: 100%;
+}
+
+.product-card {
+  background: var(--vk-card-bg);
+  border: 1px solid var(--vk-border-card);
+  border-radius: 7px;
+  box-shadow: var(--shadow-card);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+  position: relative;
+}
+
+.product-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-card-hover);
+  border-color: #8fa8c6;
+}
+
+/* Заголовок карточки продукта */
+.product-card-header {
+  padding: 10px 14px;
+  border-bottom: 1px solid #edf1f5;
+  background: #fbfcfd;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.product-card-title-group {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  min-width: 0;
+}
+
+.product-card-title {
+  font-size: 13.5px;
+  font-weight: bold;
+  color: var(--vk-link);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: pointer;
+}
+
+.product-card-title:hover {
+  color: var(--vk-link-hover);
+  text-decoration: underline;
+}
+
+.product-card-category {
+  font-size: 10.5px;
+  color: #8491a0;
+  text-transform: uppercase;
+  font-weight: bold;
+  letter-spacing: 0.3px;
+}
+
+.product-card-fav-btn {
+  background: none;
+  border: none;
+  color: #c2cbd5;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 2px 4px;
+  line-height: 1;
+  transition: color 0.15s, transform 0.15s;
+}
+
+.product-card-fav-btn:hover {
+  color: #f5a623;
+  transform: scale(1.2);
+}
+
+.product-card-fav-btn.is-fav {
+  color: #f5a623;
+  text-shadow: 0 1px 3px rgba(245, 166, 35, 0.4);
+}
+
+/* Область для картинки PNG */
+.product-card-image-box {
+  margin: 12px 14px 8px 14px;
+  height: 220px;
+  background: #fdfdfd;
+  border: 1px solid #dce4ed;
+  border-radius: 5px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  cursor: pointer;
+}
+
+.product-card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.25s ease;
+  display: block;
+}
+
+.product-card:hover .product-card-image {
+  transform: scale(1.03);
+}
+
+.product-card-badge {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  background: rgba(43, 88, 122, 0.88);
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: bold;
+  padding: 2px 6px;
+  border-radius: 3px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(2px);
+}
+
+/* Описание карточки */
+.product-card-body {
+  padding: 4px 14px 10px 14px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.product-card-desc {
+  color: #555555;
+  font-size: 11.5px;
+  line-height: 1.4;
+  margin-bottom: 10px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Нижняя панель карточки с кнопкой Скачать ▼ */
+.product-card-footer {
+  padding: 10px 14px 14px 14px;
+  background: #fbfcfd;
+  border-top: 1px solid #edf1f5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Кнопка "Скачать ▼" в точности по референсу ВКонтакте 2010 */
+.vk-download-btn-2010 {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background: linear-gradient(to bottom, var(--vk-blue-btn-top) 0%, var(--vk-blue-btn-bot) 100%);
+  border: 1px solid var(--vk-blue-btn-border);
+  border-radius: 4px;
+  color: #ffffff;
+  font-family: var(--vk-font);
+  font-size: 13px;
+  font-weight: bold;
+  padding: 8px 16px;
+  cursor: pointer;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.4);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35), 0 1px 2px rgba(0, 0, 0, 0.12);
+  transition: all 0.12s ease;
+  user-select: none;
+}
+
+.vk-download-btn-2010:hover {
+  background: linear-gradient(to bottom, #6d93bc 0%, #5177a0 100%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45), 0 2px 5px rgba(0, 0, 0, 0.16);
+  transform: translateY(-1px);
+}
+
+.vk-download-btn-2010:active {
+  background: linear-gradient(to bottom, #3d5e84 0%, #476d95 100%);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.35);
+  transform: translateY(1px);
+}
+
+.btn-down-arrow {
+  font-size: 10px;
+  opacity: 0.9;
+  transition: transform 0.15s;
+}
+
+.vk-download-btn-2010:hover .btn-down-arrow {
+  transform: translateY(1px);
+}
+
+/* Пустое состояние каталога */
+.catalog-empty-state {
+  grid-column: 1 / -1;
+  background: #ffffff;
+  border: 1px solid var(--vk-border-card);
+  border-radius: 6px;
+  padding: 30px;
+  text-align: center;
+  color: var(--vk-text-muted);
+  font-size: 13px;
+}
+
+/* --------------------------------------------------------------------------
+   ИНФОРМАЦИОННАЯ ПАНЕЛЬ (КАК НА РЕФЕРЕНСЕ ВНИЗУ)
+   -------------------------------------------------------------------------- */
+.guide-panel {
+  background: #ffffff;
+  border: 1px solid var(--vk-border-card);
+  border-radius: 6px;
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+}
+
+.guide-panel-header {
+  padding: 10px 16px;
+  background: #f7f9fb;
+  border-bottom: 1px solid #e7ecf2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.guide-header-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.guide-header-title h2 {
+  font-size: 13.5px;
+  font-weight: bold;
+  color: var(--vk-link);
+}
+
+.guide-info-icon {
+  font-size: 15px;
+}
+
+.guide-vk-tag {
+  background: #e9eff5;
+  color: #3b5a79;
+  font-size: 11px;
+  font-weight: bold;
+  padding: 2px 8px;
+  border-radius: 10px;
+  border: 1px solid #d0dce7;
+}
+
+.guide-panel-content {
+  padding: 14px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.guide-step-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.guide-step-num {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #45668e;
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.guide-step-text strong {
+  color: #222222;
+  font-size: 12.5px;
+  display: block;
+  margin-bottom: 2px;
+}
+
+.guide-step-text p {
+  color: #555555;
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.guide-step-text code {
+  background: #f0f3f6;
+  border: 1px solid #d4dde6;
+  padding: 2px 5px;
+  border-radius: 3px;
+  font-family: Consolas, monospace;
+  font-size: 11.5px;
+  color: #1a3c5e;
+}
+
+/* --------------------------------------------------------------------------
+   ПОДВАЛ В СТИЛЕ VK 2010
+   -------------------------------------------------------------------------- */
+.vk-footer {
+  border-top: 1px solid #d8e0e8;
+  background: #ffffff;
+  padding: 12px 20px;
+  margin-top: auto;
+}
+
+.vk-footer-inner {
+  max-width: 1080px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 11.5px;
+  color: #777777;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.vk-footer-left, .vk-footer-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.separator {
+  color: #cccccc;
+}
+
+.footer-cache-btn {
+  background: none;
+  border: none;
+  color: var(--vk-link);
+  font-family: var(--vk-font);
+  font-size: 11.5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.footer-cache-btn:hover {
+  text-decoration: underline;
+}
+
+.refresh-symbol {
+  display: inline-block;
+  font-size: 13px;
+  font-weight: bold;
+  transition: transform 0.5s ease;
+}
+
+.refresh-symbol.spinning {
+  transform: rotate(360deg);
+}
+
+.online-highlight {
+  color: #2e7d32;
+}
+
+.footer-ver {
+  color: #999999;
+}
+
+/* --------------------------------------------------------------------------
+   МОДАЛЬНОЕ ОКНО СКАЧИВАНИЯ (FIREFOX / CHROMIUM)
+   -------------------------------------------------------------------------- */
+.vk-modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.52);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 16px;
+  backdrop-filter: blur(2px);
+  animation: fadeInModal 0.15s ease-out;
+}
+
+@keyframes fadeInModal {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.vk-modal-window {
+  width: 100%;
+  max-width: 530px;
+  background: #ffffff;
+  border-radius: 7px;
+  box-shadow: 0 4px 22px rgba(0, 0, 0, 0.25);
+  border: 1px solid #5879a0;
+  overflow: hidden;
+  animation: slideUpModal 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+  max-height: 90vh;
+}
+
+@keyframes slideUpModal {
+  from { transform: translateY(12px) scale(0.98); opacity: 0; }
+  to { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+.vk-modal-header {
+  background: linear-gradient(to bottom, #4f739e 0%, #3d6089 100%);
+  color: #ffffff;
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #2d4f73;
+}
+
+.vk-modal-title {
+  font-size: 13.5px;
+  font-weight: bold;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+}
+
+.vk-modal-close {
+  background: none;
+  border: none;
+  color: #ffffff;
+  font-size: 22px;
+  font-weight: bold;
+  cursor: pointer;
+  line-height: 1;
+  padding: 0 4px;
+  opacity: 0.85;
+  transition: opacity 0.15s, transform 0.1s;
+}
+
+.vk-modal-close:hover {
+  opacity: 1;
+  transform: scale(1.15);
+}
+
+.vk-modal-body {
+  padding: 14px 18px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* Карточка выбранного продукта в модалке */
+.modal-product-summary {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 10px 14px;
+  background: #f7f9fb;
+  border: 1px solid #dae2eb;
+  border-radius: 5px;
+}
+
+.modal-prod-img-box {
+  width: 54px;
+  height: 54px;
+  flex-shrink: 0;
+  border-radius: 5px;
+  border: 1px solid #c9d5e2;
+  overflow: hidden;
+  background: #ffffff;
+}
+
+.modal-prod-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.modal-prod-details {
+  flex: 1;
+  min-width: 0;
+}
+
+.modal-prod-title-wrap {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 2px;
+}
+
+.modal-prod-title {
+  font-size: 13.5px;
+  font-weight: bold;
+  color: var(--vk-link);
+}
+
+.modal-prod-tag {
+  background: #e2e8f0;
+  color: #4a5568;
+  padding: 1px 6px;
+  border-radius: 3px;
+  font-size: 10.5px;
+  font-weight: bold;
+}
+
+.modal-prod-version-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  color: #777777;
+  margin-bottom: 3px;
+}
+
+.modal-github-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 1px 7px;
+  background: #f0f4f8;
+  border: 1px solid #c2d1e0;
+  border-radius: 3px;
+  color: #2b587a;
+  font-size: 10.5px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.15s ease;
+}
+
+.modal-github-badge:hover {
+  background: #e1ebf4;
+  border-color: #99b6d4;
+  color: #1a4261;
+  text-decoration: none;
+}
+
+.modal-prod-desc {
+  color: #555555;
+  font-size: 11.5px;
+  line-height: 1.35;
+}
+
+/* Шаг выбора браузера */
+.modal-step-section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.step-heading {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12.5px;
+  font-weight: bold;
+  color: var(--vk-link);
+}
+
+.step-num-badge {
+  background: #45668e;
+  color: #ffffff;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: bold;
+}
+
+.browser-options-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+}
+
+.browser-choice-card {
+  display: flex;
+  align-items: center;
+  padding: 12px 14px;
+  background: #ffffff;
+  border: 1.5px solid #cbd6e2;
+  border-radius: 6px;
+  cursor: pointer;
+  text-align: left;
+  font-family: var(--vk-font);
+  transition: all 0.15s ease;
+}
+
+.browser-choice-card:hover {
+  background: #f7faff;
+  border-color: #45668e;
+  box-shadow: 0 2px 8px rgba(69, 102, 142, 0.18);
+  transform: translateY(-1px);
+}
+
+.browser-choice-icon {
+  margin-right: 14px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.browser-logo-png {
+  width: 42px;
+  height: 42px;
+  object-fit: contain;
+  display: block;
+}
+
+.browser-choice-info {
+  flex: 1;
+}
+
+.choice-title {
+  display: block;
+  font-size: 13.5px;
+  font-weight: bold;
+  color: var(--vk-link);
+  margin-bottom: 2px;
+}
+
+.choice-desc {
+  display: block;
+  font-size: 11px;
+  color: #777777;
+  margin-bottom: 2px;
+}
+
+.choice-format {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: bold;
+  color: #2b587a;
+  background: #eaf1f8;
+  padding: 1px 5px;
+  border-radius: 3px;
+}
+
+.choice-arrow {
+  color: #8899aa;
+  font-size: 16px;
+  font-weight: bold;
+  transition: transform 0.15s;
+}
+
+.browser-choice-card:hover .choice-arrow {
+  color: #45668e;
+  transform: translateX(3px);
+}
+
+/* Панель инструкций браузера */
+.instruction-box {
+  background: #ffffff;
+  border: 1px solid #d4dee8;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.instruction-top {
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #d4dee8;
+}
+
+.instruction-top.ff-theme {
+  background: #fff6ed;
+  border-bottom-color: #ffd8b3;
+}
+
+.instruction-top.cr-theme {
+  background: #edf5ff;
+  border-bottom-color: #bedaff;
+}
+
+.instruction-title-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.instruction-title-wrap h4 {
+  font-size: 12.5px;
+  color: #2b587a;
+  font-weight: bold;
+}
+
+.browser-pill {
+  font-size: 10.5px;
+  font-weight: bold;
+  padding: 2px 6px;
+  border-radius: 3px;
+  width: fit-content;
+}
+
+.browser-pill.ff {
+  background: #ffe3c9;
+  color: #b54700;
+}
+
+.browser-pill.cr {
+  background: #d4e7ff;
+  color: #1059b8;
+}
+
+.back-pill-btn {
+  background: #ffffff;
+  border: 1px solid #becddc;
+  padding: 4px 8px;
+  border-radius: 3px;
+  color: var(--vk-link);
+  font-family: var(--vk-font);
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.back-pill-btn:hover {
+  background: #f0f4f8;
+  border-color: #9ab1c7;
+}
+
+/* Блок прямой загрузки файла */
+.download-action-bar {
+  background: #f9fbfd;
+  padding: 12px 14px;
+  margin: 12px 14px 4px 14px;
+  border-radius: 5px;
+  border: 1px dashed #b5c7da;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.download-file-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.file-name {
+  font-size: 12px;
+  font-weight: bold;
+  color: var(--vk-link);
+  font-family: Consolas, monospace;
+}
+
+.file-tag {
+  font-size: 10.5px;
+  color: #888888;
+}
+
+.primary-vk-btn {
+  background: linear-gradient(to bottom, #5f84ae 0%, #476b94 100%) !important;
+  border: 1px solid #33557a !important;
+  color: #ffffff !important;
+  padding: 7px 14px !important;
+  font-size: 12px !important;
+  border-radius: 3px;
+  font-weight: bold;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35);
+  text-decoration: none !important;
+}
+
+.primary-vk-btn:hover {
+  background: linear-gradient(to bottom, #698eb8 0%, #4f739c 100%) !important;
+}
+
+/* Временная шкала шагов */
+.steps-timeline {
+  list-style: none;
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.timeline-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.step-badge {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background-color: #5579a3;
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.step-content {
+  flex: 1;
+}
+
+.step-content strong {
+  color: #222222;
+  font-size: 12px;
+  display: block;
+  margin-bottom: 2px;
+}
+
+.step-content p {
+  color: #555555;
+  font-size: 11.5px;
+  line-height: 1.4;
+}
+
+.copyable-tag {
+  background: #edf2f7;
+  border: 1px solid #cbd5e1;
+  border-radius: 3px;
+  padding: 1px 6px;
+  font-family: Consolas, monospace;
+  font-size: 11px;
+  color: #1a4266;
+  cursor: pointer;
+}
+
+.copyable-tag:hover {
+  background: #e2e8f0;
+  border-color: #94a3b8;
+}
+
+.copy-url-block {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 4px 0;
+}
+
+.mini-copy-btn {
+  background: #e8eef5;
+  border: 1px solid #bcc9d7;
+  border-radius: 3px;
+  padding: 2px 7px;
+  font-size: 10.5px;
+  color: var(--vk-link);
+  cursor: pointer;
+  font-family: var(--vk-font);
+}
+.mini-copy-btn:hover {
+  background: #dce5ef;
+}
+
+.hint-text {
+  color: #888888;
+  font-size: 10.5px;
+  display: block;
+}
+
+/* Футер модалки */
+.vk-modal-footer {
+  padding: 10px 16px;
+  background: #f0f3f6;
+  border-top: 1px solid #d6dee6;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.vk-dialog-btn {
+  font-family: var(--vk-font);
+  font-size: 12px;
+  padding: 6px 14px;
+  border-radius: 3px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.12s;
+}
+
+.vk-dialog-btn.primary {
+  background: linear-gradient(to bottom, #5f84ae 0%, #476b94 100%);
+  border: 1px solid #33557a;
+  color: #ffffff;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.vk-dialog-btn.primary:hover {
+  background: linear-gradient(to bottom, #698eb8 0%, #4f739c 100%);
+}
+
+.vk-dialog-btn.secondary {
+  background: linear-gradient(to bottom, #ffffff 0%, #e9ecef 100%);
+  border: 1px solid #bcc7d3;
+  color: #444444;
+}
+
+.vk-dialog-btn.secondary:hover {
+  background: #f1f3f5;
+  border-color: #aab8c6;
+}
+
+/* --------------------------------------------------------------------------
+   ТОСТ УВЕДОМЛЕНИЕ
+   -------------------------------------------------------------------------- */
+.vk-toast-notify {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%) translateY(30px);
+  background: rgba(30, 41, 59, 0.94);
+  color: #ffffff;
+  padding: 9px 18px;
+  border-radius: 20px;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+  z-index: 2000;
+}
+
+.vk-toast-notify.show {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+}
+
+.toast-check {
+  background: #48bb78;
+  color: #ffffff;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  font-size: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+/* --------------------------------------------------------------------------
+   ПЕРЕКЛЮЧЕНИЕ СТРАНИЦ (КАТАЛОГ / О ПРОЕКТЕ)
+   -------------------------------------------------------------------------- */
+.page-view {
+  display: none;
+  width: 100%;
+}
+
+.page-view.active {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  animation: fadeInView 0.18s ease-out;
+}
+
+@keyframes fadeInView {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* --------------------------------------------------------------------------
+   СТРАНИЦА "О ПРОЕКТЕ" В СТИЛЕ VK 2010
+   -------------------------------------------------------------------------- */
+.about-card-page {
+  background: var(--vk-card-bg);
+  border: 1px solid var(--vk-border-card);
+  border-radius: 7px;
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.about-page-header {
+  padding: 14px 20px;
+  background: #f7f9fb;
+  border-bottom: 1px solid #e2e8f0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.about-brand-box {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.about-logo-img {
+  width: 48px;
+  height: 48px;
+  border-radius: 6px;
+  object-fit: cover;
+  border: 1px solid #2a4c72;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+  display: block;
+}
+
+.about-titles h2 {
+  font-size: 16px;
+  font-weight: bold;
+  color: var(--vk-link);
+}
+
+.about-badge-status {
+  font-size: 11px;
+  color: #778899;
+}
+
+.vk-button-secondary {
+  background: linear-gradient(to bottom, #ffffff 0%, #ebedf0 100%);
+  border: 1px solid #bcc7d4;
+  color: #334455;
+  font-family: var(--vk-font);
+  font-size: 12px;
+  font-weight: bold;
+  padding: 6px 14px;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: all 0.12s;
+}
+
+.vk-button-secondary:hover {
+  background: #f2f4f7;
+  border-color: #a4b4c4;
+}
+
+.about-page-body {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.about-section-block {
+  background: #ffffff;
+  border: 1px solid #e7ecf2;
+  border-radius: 5px;
+  padding: 14px 16px;
+}
+
+.about-section-block.highlight-box {
+  background: #f9fbfe;
+  border-color: #c9d8ea;
+}
+
+.about-block-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.about-block-title h3 {
+  font-size: 13.5px;
+  color: var(--vk-link);
+  font-weight: bold;
+}
+
+.about-block-title .icon {
+  font-size: 16px;
+}
+
+.about-section-block p {
+  color: #444444;
+  font-size: 12px;
+  line-height: 1.55;
+}
+
+.code-hl {
+  background: #eef2f7;
+  border: 1px solid #d4dde6;
+  padding: 1px 5px;
+  border-radius: 3px;
+  font-family: Consolas, monospace;
+  font-size: 11.5px;
+  color: #1a3c5e;
+}
+
+.about-bullet-list {
+  margin: 10px 0 10px 20px;
+  color: #444444;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.about-bullet-list code {
+  background: #edf2f7;
+  padding: 1px 4px;
+  border-radius: 3px;
+  font-family: Consolas, monospace;
+  color: #1a3c5e;
+}
+
+.about-ordered-list {
+  margin: 10px 0 6px 20px;
+  color: #444444;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.about-ordered-list li {
+  margin-bottom: 8px;
+}
+
+.code-snippet-box {
+  background: #24292e;
+  color: #f1f8ff;
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-family: Consolas, monospace;
+  font-size: 11px;
+  margin: 6px 0;
+  overflow-x: auto;
+}
+
+.about-hint {
+  color: #667788 !important;
+  font-size: 11.5px !important;
+  margin-top: 6px;
+}
+
+.browser-info-mini-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.browser-info-card {
+  background: #f7f9fb;
+  border: 1px solid #e1e7ee;
+  border-radius: 4px;
+  padding: 10px 12px;
+}
+
+.browser-info-card strong {
+  color: var(--vk-link);
+  font-size: 12px;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.browser-info-card p {
+  color: #555555;
+  font-size: 11.5px;
+  line-height: 1.4;
+}
+
+.browser-info-card code {
+  background: #eef2f7;
+  padding: 1px 4px;
+  border-radius: 3px;
+  font-family: Consolas, monospace;
+  font-size: 11px;
+}
+
+.about-page-footer {
+  padding: 14px 20px;
+  background: #f7f9fb;
+  border-top: 1px solid #e2e8f0;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.vk-button-primary {
+  background: linear-gradient(to bottom, #5f84ae 0%, #476b94 100%);
+  border: 1px solid #33557a;
+  color: #ffffff;
+  font-family: var(--vk-font);
+  font-size: 12.5px;
+  font-weight: bold;
+  padding: 8px 18px;
+  border-radius: 3px;
+  cursor: pointer;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35);
+  transition: all 0.12s;
+}
+
+.vk-button-primary:hover {
+  background: linear-gradient(to bottom, #698eb8 0%, #4f739c 100%);
+}
+
+@media (max-width: 600px) {
+  .browser-info-mini-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   АДАПТИВНОСТЬ
+   -------------------------------------------------------------------------- */
+@media (max-width: 900px) {
+  .products-grid-section {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .products-grid-section {
+    grid-template-columns: 1fr;
+  }
+  .catalog-toolbar-panel {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .toolbar-right {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .vk-search-input {
+    width: 100%;
+  }
+  .vk-search-input:focus {
+    width: 100%;
+  }
+  .vk-modal-footer {
+    flex-direction: column-reverse;
+  }
+  .vk-dialog-btn {
+    width: 100%;
+    text-align: center;
+  }
+}

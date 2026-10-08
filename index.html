@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>huEVO SWAGdev — Каталог продуктов (VK 2010 Style)</title>
+  <meta name="description"
+    content="Каталог продуктов и расширений huEVO SWAGdev в классическом стиле ВКонтакте 2010. Скачивание и пошаговые инструкции для Firefox и Chromium.">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2218%22 fill=%22%2345668e%22/><text y=%2266%22 x=%2250%22 text-anchor=%22middle%22 font-family=%22Tahoma,sans-serif%22 font-size=%2254%22 font-weight=%22bold%22 fill=%22white%22>h</text></svg>">
+</head>
+
+<body>
+
+  <!-- Звуковые элементы (вы можете менять путь src на свои аудиофайлы mp3/wav/ogg) -->
+  <audio id="soundClickSrc" src="sounds/click.mp3" preload="auto"></audio>
+  <audio id="soundSuccessSrc" src="sounds/success.mp3" preload="auto"></audio>
+
+  <!-- Верхняя синяя панель ВКонтакте 2010 (huEVO SWAGdev) -->
+  <header class="vk-header-bar">
+    <div class="vk-header-inner">
+      <div class="vk-brand-area">
+        <a href="#catalog" class="vk-brand-logo" id="logoLink">
+          <span class="brand-title">huEVO <span class="brand-accent">SWAGdev</span></span>
+        </a>
+      </div>
+
+      <!-- Меню навигации: Каталог и О проекте -->
+      <nav class="vk-nav-menu">
+        <button type="button" class="vk-nav-pill active" id="navCatalogBtn">Каталог</button>
+        <button type="button" class="vk-nav-pill" id="navAboutBtn">О проекте</button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Главный контейнер страниц -->
+  <main class="page-container">
+
+    <!-- ====================================================================
+         СТРАНИЦА 1: КАТАЛОГ ПРОДУКТОВ (3 карточки в ряд по референсу)
+         ==================================================================== -->
+    <div id="catalogView" class="page-view active">
+
+      <!-- Верхний блок управления и поиска каталога -->
+      <section class="catalog-toolbar-panel">
+        <div class="toolbar-left">
+          <h1 class="catalog-title">Каталог продуктов huEVO SWAGdev</h1>
+          <span class="catalog-subtitle">Выберите продукт для загрузки под Firefox или Chromium</span>
+        </div>
+
+        <div class="toolbar-right">
+          <div class="filter-tabs-group">
+            <button class="filter-tab active" data-filter="all" id="tabAll">Все продукты (3)</button>
+            <button class="filter-tab" data-filter="fav" id="tabFav">★ Избранные (<span id="favCount">0</span>)</button>
+          </div>
+          <div class="search-box">
+            <input type="text" id="searchInput" class="vk-search-input" placeholder="Поиск по названию..."
+              autocomplete="off">
+          </div>
+        </div>
+      </section>
+
+      <!-- Сетка 3 продуктов (В точности по фото-референсу) -->
+      <section class="products-grid-section" id="productsGrid">
+        <!-- Генерируется динамически через app.js -->
+      </section>
+
+    </div>
+
+    <!-- ====================================================================
+         СТРАНИЦА 2: О ПРОЕКТЕ (Полноценная страница в стиле VK 2010)
+         ==================================================================== -->
+    <div id="aboutView" class="page-view" style="display: none;">
+
+      <section class="about-card-page">
+
+        <!-- Заголовок страницы О проекте -->
+        <div class="about-page-header">
+          <div class="about-brand-box">
+            <img src="images/logo.png" alt="huEVO SWAGdev" class="about-logo-img">
+            <div class="about-titles">
+              <h2>huEVO SWAGdev</h2>
+              <span class="about-badge-status">Официальный каталог · v1.1.0</span>
+            </div>
+          </div>
+          <button class="vk-button-secondary" id="backToCatalogFromAbout">
+            ← Вернуться в каталог
+          </button>
+        </div>
+
+        <!-- Контент страницы О проекте -->
+        <div class="about-page-body">
+
+          <div class="about-section-block">
+            <div class="about-block-title">
+              <span class="icon">📖</span>
+              <h3>О платформе huEVO SWAGdev</h3>
+            </div>
+            <p>
+              Проект <strong>huEVO SWAGdev</strong> создан для улучшения визуала соц.сети huEVO и rofls.
+            </p>
+          </div>
+
+        </div>
+
+        <!-- Футер страницы О проекте -->
+        <div class="about-page-footer">
+          <button class="vk-button-primary" id="returnCatalogFooterBtn">
+            Перейти к каталогу продуктов ➔
+          </button>
+        </div>
+
+      </section>
+
+    </div>
+
+  </main>
+
+  <!-- Подвал в стиле VK -->
+  <footer class="vk-footer">
+    <div class="vk-footer-inner">
+      <div class="vk-footer-left">
+        <span>huEVO SWAGdev © 1337–2026</span>
+        <span class="separator">·</span>
+        <button class="footer-cache-btn" id="refreshCacheBtn">
+          <span class="refresh-symbol">↻</span>
+          <span>Обновить кэш</span>
+        </button>
+      </div>
+      <div class="vk-footer-right">
+        <span>Статус: <strong class="online-highlight">Все продукты доступны</strong></span>
+        <span class="separator">·</span>
+        <span class="footer-ver">v1.1.0 (Made bay chiefkeef)</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- МОДАЛЬНОЕ ОКНО: Выбор браузера и Инструкция (Firefox / Chromium) -->
+  <div class="vk-modal-backdrop" id="downloadModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle"
+    style="display: none;">
+    <div class="vk-modal-window">
+
+      <!-- Заголовок модального окна -->
+      <div class="vk-modal-header">
+        <span class="vk-modal-title" id="modalTitle">Загрузка продукта</span>
+        <button class="vk-modal-close" id="modalCloseBtn" aria-label="Закрыть">&times;</button>
+      </div>
+
+      <!-- Тело модального окна -->
+      <div class="vk-modal-body">
+
+        <!-- Карточка выбранного продукта -->
+        <div class="modal-product-summary" id="modalProductSummary">
+          <div class="modal-prod-img-box">
+            <img src="images/product1.png" alt="Превью" class="modal-prod-img" id="modalProdImg">
+          </div>
+          <div class="modal-prod-details">
+            <div class="modal-prod-title-wrap">
+              <h3 class="modal-prod-title" id="modalProdTitle">Название продукта</h3>
+            </div>
+            <div class="modal-prod-version-row">
+              <span class="version-label">Версия:</span>
+              <strong id="modalProdVersion">v1.0.0</strong>
+              <a id="modalGithubLink" href="#" target="_blank" rel="noopener noreferrer" class="modal-github-badge" style="display: none;" title="Открыть репозиторий на GitHub">
+                <svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor" style="vertical-align: -1px; margin-right: 4px;">
+                  <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+                </svg>
+                GitHub Репозиторий
+              </a>
+            </div>
+            <p class="modal-prod-desc" id="modalProdDesc">Описание продукта появится здесь.</p>
+          </div>
+        </div>
+
+        <!-- ШАГ 1: ВЫБОР БРАУЗЕРА (Показывается первым) -->
+        <div class="modal-step-section" id="stepBrowserSelect">
+          <div class="step-heading">
+            <span class="step-num-badge">1</span>
+            <span>Выберите ваш браузер для скачивания:</span>
+          </div>
+
+          <div class="browser-options-grid">
+
+            <!-- Карточка Firefox -->
+            <button class="browser-choice-card" id="chooseFirefoxBtn" type="button">
+              <div class="browser-choice-icon ff-icon">
+                <img src="images/firefox.png" alt="Mozilla Firefox" class="browser-logo-png">
+              </div>
+              <div class="browser-choice-info">
+                <span class="choice-title">Mozilla Firefox</span>
+                <span class="choice-desc">Для Firefox, Waterfox, LibreWolf и Floorp</span>
+                <span class="choice-format">Пакет расширения (.xpi)</span>
+              </div>
+              <span class="choice-arrow">➔</span>
+            </button>
+
+            <!-- Карточка Chromium -->
+            <button class="browser-choice-card" id="chooseChromiumBtn" type="button">
+              <div class="browser-choice-icon cr-icon">
+                <img src="images/chromium.png" alt="Chromium" class="browser-logo-png">
+              </div>
+              <div class="browser-choice-info">
+                <span class="choice-title">Chromium Браузеры</span>
+                <span class="choice-desc">Google Chrome, Яндекс.Браузер, Edge, Opera, Brave</span>
+                <span class="choice-format">Архив (.zip / .crx)</span>
+              </div>
+              <span class="choice-arrow">➔</span>
+            </button>
+
+          </div>
+        </div>
+
+        <!-- ШАГ 2: ИНСТРУКЦИЯ ДЛЯ FIREFOX -->
+        <div class="instruction-box" id="instructionFirefoxPane" style="display: none;">
+          <div class="instruction-top ff-theme">
+            <div class="instruction-title-wrap">
+              <span class="browser-pill ff">🦊 Mozilla Firefox</span>
+              <h4>Пошаговая инструкция установки для Firefox</h4>
+            </div>
+            <button class="back-pill-btn" id="backToSelectFromFf">← Сменить браузер</button>
+          </div>
+
+          <div class="download-action-bar">
+            <div class="download-file-info">
+              <span class="file-name" id="ffFileName">product_extension.xpi</span>
+              <span class="file-tag">Готовый пакет .xpi</span>
+            </div>
+            <a href="#" class="vk-button primary-vk-btn" id="downloadFfFileBtn" download="addon.xpi">
+              <span class="btn-icon">⬇</span>
+              <span>Скачать для Firefox (.xpi)</span>
+            </a>
+          </div>
+
+          <ol class="steps-timeline">
+            <li class="timeline-step">
+              <div class="step-badge">1</div>
+              <div class="step-content">
+                <strong>Скачайте пакет расширения</strong>
+                <p>Нажмите синюю кнопку «Скачать для Firefox (.xpi)» выше и сохраните файл.</p>
+              </div>
+            </li>
+            <li class="timeline-step">
+              <div class="step-badge">2</div>
+              <div class="step-content">
+                <strong>Подтвердите установку в Firefox</strong>
+                <p>Если в верхнем правом углу браузера появится плашка <em>«Сайт пытается установить дополнение»</em>,
+                  нажмите <strong>«Разрешить»</strong>, а затем <strong>«Добавить»</strong>.</p>
+              </div>
+            </li>
+            <li class="timeline-step">
+              <div class="step-badge">3</div>
+              <div class="step-content">
+                <strong>Альтернативный способ установки (из файла):</strong>
+                <p>Перейдите в браузере по адресу <code class="copyable-tag"
+                    data-copy="about:debugging#/runtime/this-firefox"
+                    title="Кликните для копирования">about:debugging#/runtime/this-firefox</code> ➔ Нажмите на временные
+                  дополнения ➔ Выберите <em>«Загрузить временное дополнение...»</em> ➔ Укажите скачанный
+                  <code>.xpi</code>.
+                </p>
+              </div>
+            </li>
+            <li class="timeline-step">
+              <div class="step-badge">4</div>
+              <div class="step-content">
+                <strong>Готово к запуску!</strong>
+                <p>Иконка появится в меню дополнений Firefox. Продукт готов к работе.</p>
+              </div>
+            </li>
+          </ol>
+        </div>
+
+        <!-- ШАГ 2: ИНСТРУКЦИЯ ДЛЯ CHROMIUM -->
+        <div class="instruction-box" id="instructionChromiumPane" style="display: none;">
+          <div class="instruction-top cr-theme">
+            <div class="instruction-title-wrap">
+              <span class="browser-pill cr">🌐 Chromium</span>
+              <h4>Пошаговая инструкция установки для Chrome / Edge / Яндекс</h4>
+            </div>
+            <button class="back-pill-btn" id="backToSelectFromCr">← Сменить браузер</button>
+          </div>
+
+          <div class="download-action-bar">
+            <div class="download-file-info">
+              <span class="file-name" id="crFileName">product_extension.zip</span>
+              <span class="file-tag">Архив .zip с файлами</span>
+            </div>
+            <a href="#" class="vk-button primary-vk-btn" id="downloadCrFileBtn" download="extension.zip">
+              <span class="btn-icon">⬇</span>
+              <span>Скачать для Chromium (.zip)</span>
+            </a>
+          </div>
+
+          <ol class="steps-timeline">
+            <li class="timeline-step">
+              <div class="step-badge">1</div>
+              <div class="step-content">
+                <strong>Скачайте и распакуйте архив</strong>
+                <p>Нажмите синюю кнопку «Скачать для Chromium (.zip)» выше и распакуйте архив в отдельную папку.</p>
+              </div>
+            </li>
+            <li class="timeline-step">
+              <div class="step-badge">2</div>
+              <div class="step-content">
+                <strong>Откройте страницу расширений в браузере</strong>
+                <div class="copy-url-block">
+                  <code class="copyable-tag" id="crUrlTag" data-copy="chrome://extensions/"
+                    title="Кликните для копирования">chrome://extensions/</code>
+                  <button class="mini-copy-btn" data-target="chrome://extensions/">Копировать</button>
+                </div>
+                <small class="hint-text">(Для Яндекс.Браузера: <code>browser://tune/</code>, для Edge:
+                  <code>edge://extensions/</code>)</small>
+              </div>
+            </li>
+            <li class="timeline-step">
+              <div class="step-badge">3</div>
+              <div class="step-content">
+                <strong>Включите «Режим разработчика»</strong>
+                <p>В правом верхнем углу страницы расширений включите тумблер <strong>«Режим разработчика» (Developer
+                    mode)</strong>.</p>
+              </div>
+            </li>
+            <li class="timeline-step">
+              <div class="step-badge">4</div>
+              <div class="step-content">
+                <strong>Загрузите распакованное расширение</strong>
+                <p>В левом верхнем углу нажмите кнопку <strong>«Загрузить распакованное расширение»</strong> (Load
+                  unpacked) и выберите вашу распакованную папку.</p>
+              </div>
+            </li>
+            <li class="timeline-step">
+              <div class="step-badge">5</div>
+              <div class="step-content">
+                <strong>Установка завершена!</strong>
+                <p>Закрепите расширение значком булавки 📌 в панели браузера и открывайте продукт.</p>
+              </div>
+            </li>
+          </ol>
+        </div>
+
+      </div>
+
+      <!-- Футер модалки в стиле VK -->
+      <div class="vk-modal-footer">
+        <button class="vk-dialog-btn secondary" id="modalCloseFooterBtn">Закрыть</button>
+        <button class="vk-dialog-btn primary" id="modalCopyGuideBtn" style="display: none;">Скопировать
+          инструкцию</button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Всплывающий тост VK 2010 -->
+  <div class="vk-toast-notify" id="vkToast">
+    <span class="toast-check">✓</span>
+    <span class="toast-message" id="toastMessage">Готово</span>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+
+</html>
