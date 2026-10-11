@@ -15,12 +15,12 @@ const PRODUCTS = [
     version: "v1.1.0",
     image: "images/product1.png",
     firefoxFileName: "swagdev_huevo_themes-1.1.0.xpi",
-    chromiumFileName: "huEVO_themes_chromium.zip",
+    chromiumFileName: "huevo-themes-chromium.zip",
     firefoxUrl: "https://addons.mozilla.org/en-US/firefox/addon/swagdev-huevo-themes/",
     firefoxDirectXpiUrl: "https://addons.mozilla.org/firefox/downloads/file/5109575/swagdev_huevo_themes-1.1.0.xpi",
     isOfficialFfAddon: true,
     amoUrl: "https://addons.mozilla.org/en-US/firefox/addon/swagdev-huevo-themes/",
-    chromiumUrl: ""
+    chromiumUrl: "https://github.com/neriusshadow/SWAGDEVhuEVOthemes/raw/main/huevo-themes-chromium.zip"
   },
   {
     id: "product2",
@@ -228,10 +228,18 @@ function triggerDownloadFile(product, browserType) {
   const directUrl = isFirefox ? product.firefoxUrl : product.chromiumUrl;
 
   if (directUrl && directUrl.trim() !== "#" && directUrl.trim() !== "") {
-    window.open(directUrl, "_blank", "noopener,noreferrer");
     if (isFirefox && product.isOfficialFfAddon) {
+      window.open(directUrl, "_blank", "noopener,noreferrer");
       showToast("Открываем страницу huEVO themes в Mozilla Add-ons!");
     } else {
+      const a = document.createElement("a");
+      a.href = directUrl;
+      a.download = fileName;
+      a.target = "_blank";
+      a.rel = "noopener noreferrer";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
       showToast(`Загрузка ${fileName} запущена!`);
     }
     return;
@@ -427,11 +435,31 @@ function openDownloadModal(productId) {
   }
 
   const downloadCrBtn = document.getElementById("downloadCrFileBtn");
+  const crFileTag = document.querySelector("#instructionChromiumPane .file-tag");
+  if (crFileTag) {
+    crFileTag.textContent = prod.id === "product1" ? "Архив .zip с расширением (16.7 МБ)" : "Архив .zip с файлами";
+  }
+
   if (downloadCrBtn) {
-    downloadCrBtn.onclick = (e) => {
-      e.preventDefault();
-      triggerDownloadFile(state.activeProduct, "chromium");
-    };
+    if (prod.chromiumUrl && prod.chromiumUrl.trim() !== "") {
+      downloadCrBtn.href = prod.chromiumUrl;
+      downloadCrBtn.setAttribute("download", prod.chromiumFileName);
+      downloadCrBtn.target = "_blank";
+      downloadCrBtn.rel = "noopener noreferrer";
+      downloadCrBtn.onclick = () => {
+        audio.playSuccess();
+        showToast(`Загрузка ${prod.chromiumFileName} запущена!`);
+      };
+    } else {
+      downloadCrBtn.href = "#";
+      downloadCrBtn.removeAttribute("download");
+      downloadCrBtn.removeAttribute("target");
+      downloadCrBtn.removeAttribute("rel");
+      downloadCrBtn.onclick = (e) => {
+        e.preventDefault();
+        triggerDownloadFile(state.activeProduct, "chromium");
+      };
+    }
   }
 
   showBrowserSelectStep();
