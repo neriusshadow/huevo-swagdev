@@ -15,7 +15,7 @@
      - **Шаг 2:** Пошаговая инструкция под выбранный браузер + кнопка прямой загрузки файла (`.xpi` или `.zip`) + кнопка копирования текста инструкции.
 4. **Замена картинок и логотипов (PNG):**
    - Все изображения хранятся в папке `images/`:
-     - `images/product1.png` — huEVO themes (v1.1)
+     - `images/product1.png` — huEVO themes (v1.1.0)
      - `images/product2.png` — huEVO games (v1.0)
      - `images/product3.png` — fedorEvo (v0.67)
      - `images/logo.png` — квадратный логотип huEVO SWAGdev на странице «О проекте»
@@ -34,9 +34,15 @@
 
 ---
 
-## 🌐 Онлайн-сайт на GitHub Pages:
+## 🚀 Развертывание на GitHub Pages:
 
-- **Рабочий сайт:** [https://neriusshadow.github.io/huevo-swagdev/](https://neriusshadow.github.io/huevo-swagdev/)
-- **Репозиторий сайта:** [neriusshadow/huevo-swagdev](https://github.com/neriusshadow/huevo-swagdev)
-- **Репозиторий huEVO themes:** [neriusshadow/SWAGDEVhuEVOthemes](https://github.com/neriusshadow/SWAGDEVhuEVOthemes)
-  - Релиз v1.1: [huEVO themes v1.1](https://github.com/neriusshadow/SWAGDEVhuEVOthemes/releases/tag/v1.1)
+1. Создайте репозиторий на [GitHub](https://github.com/new).
+2. Загрузите файлы проекта в корень репозитория:
+   - `index.html`
+   - `style.css`
+   - `app.js`
+   - `.nojekyll`
+   - Папку `images/`
+   - Папку `sounds/`
+3. В репозитории откройте **Settings** ➔ **Pages** ➔ выберите **Deploy from a branch (main / root)** и нажмите **Save**.
+4. Сайт будет доступен по ссылке `https://<ваш_логин>.github.io/<имя_репозитория>/`.

@@ -12,16 +12,15 @@ const PRODUCTS = [
     id: "product1",
     title: "huEVO themes",
     description: "Набор кастомных ретро-тем оформления ВКонтакте 2010 и стилей интерфейса для браузера.",
-    version: "v1.1",
+    version: "v1.1.0",
     image: "images/product1.png",
-    firefoxFileName: "huevo-themes-firefox.zip",
-    firefoxXpiFileName: "huevo-themes-firefox.xpi",
-    chromiumFileName: "huevo-themes-chromium.zip",
-    firefoxUrl: "https://github.com/neriusshadow/SWAGDEVhuEVOthemes/releases/download/v1.1/huevo-themes-firefox.zip",
-    firefoxXpiUrl: "https://github.com/neriusshadow/SWAGDEVhuEVOthemes/releases/download/v1.1/huevo-themes-firefox.xpi",
-    chromiumUrl: "https://github.com/neriusshadow/SWAGDEVhuEVOthemes/releases/download/v1.1/huevo-themes-chromium.zip",
-    githubRepoUrl: "https://github.com/neriusshadow/SWAGDEVhuEVOthemes",
-    githubReleaseUrl: "https://github.com/neriusshadow/SWAGDEVhuEVOthemes/releases/tag/v1.1"
+    firefoxFileName: "swagdev_huevo_themes-1.1.0.xpi",
+    chromiumFileName: "huEVO_themes_chromium.zip",
+    firefoxUrl: "https://addons.mozilla.org/en-US/firefox/addon/swagdev-huevo-themes/",
+    firefoxDirectXpiUrl: "https://addons.mozilla.org/firefox/downloads/file/5109575/swagdev_huevo_themes-1.1.0.xpi",
+    isOfficialFfAddon: true,
+    amoUrl: "https://addons.mozilla.org/en-US/firefox/addon/swagdev-huevo-themes/",
+    chromiumUrl: ""
   },
   {
     id: "product2",
@@ -29,12 +28,10 @@ const PRODUCTS = [
     description: "Полноценный раздел «Игры» для huEVO в эстетике старого ВКонтакте с каталогом браузерных ретро-игр.",
     version: "v1.0",
     image: "images/product2.png",
-    firefoxFileName: "huevo-games-firefox.zip",
-    firefoxXpiFileName: "huevo-games-firefox.xpi",
-    chromiumFileName: "huevo-games-chromium.zip",
-    firefoxUrl: "products/huevogames/huevo-games-firefox.zip",
-    firefoxXpiUrl: "products/huevogames/huevo-games-firefox.xpi",
-    chromiumUrl: "products/huevogames/huevo-games-chromium.zip"
+    firefoxFileName: "huEVO_games_firefox.xpi",
+    chromiumFileName: "huEVO_games_chromium.zip",
+    firefoxUrl: "",
+    chromiumUrl: ""
   },
   {
     id: "product3",
@@ -42,12 +39,10 @@ const PRODUCTS = [
     description: "Плагин кастомизации для huEVO: заменяет все иконки и названия категорий на Федор Яйца.",
     version: "v0.67",
     image: "images/product3.png",
-    firefoxFileName: "fedorevo-firefox.zip",
-    firefoxXpiFileName: "fedorevo-firefox.xpi",
-    chromiumFileName: "fedorevo-chromium.zip",
-    firefoxUrl: "products/fedorevo/fedorevo-firefox.zip",
-    firefoxXpiUrl: "products/fedorevo/fedorevo-firefox.xpi",
-    chromiumUrl: "products/fedorevo/fedorevo-chromium.zip"
+    firefoxFileName: "fedorEvo_firefox.xpi",
+    chromiumFileName: "fedorEvo_chromium.zip",
+    firefoxUrl: "",
+    chromiumUrl: ""
   }
 ];
 
@@ -153,7 +148,7 @@ class SiteAudioEngine {
 
       osc.start();
       osc.stop(this.synthCtx.currentTime + 0.04);
-    } catch (e) {}
+    } catch (e) { }
   }
 
   // Резервный синтезатор успеха (Web Audio)
@@ -179,7 +174,7 @@ class SiteAudioEngine {
 
       osc.start();
       osc.stop(now + 0.22);
-    } catch (e) {}
+    } catch (e) { }
   }
 }
 
@@ -233,15 +228,12 @@ function triggerDownloadFile(product, browserType) {
   const directUrl = isFirefox ? product.firefoxUrl : product.chromiumUrl;
 
   if (directUrl && directUrl.trim() !== "#" && directUrl.trim() !== "") {
-    const a = document.createElement("a");
-    a.href = directUrl;
-    a.download = fileName;
-    a.target = "_blank";
-    a.rel = "noopener noreferrer";
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    showToast(`Загрузка ${fileName} запущена!`);
+    window.open(directUrl, "_blank", "noopener,noreferrer");
+    if (isFirefox && product.isOfficialFfAddon) {
+      showToast("Открываем страницу huEVO themes в Mozilla Add-ons!");
+    } else {
+      showToast(`Загрузка ${fileName} запущена!`);
+    }
     return;
   }
 
@@ -256,23 +248,23 @@ function triggerDownloadFile(product, browserType) {
     }
   };
 
-  const fileContent = 
-`================================================================
+  const fileContent =
+    `================================================================
  huEVO SWAGdev Package: ${product.title}
  Версия: ${product.version}
  Браузер: ${isFirefox ? "Mozilla Firefox (.xpi)" : "Chromium (.zip)"}
 ================================================================
 
 ИНСТРУКЦИЯ ПО УСТАНОВКЕ:
-${isFirefox ? 
-`1. Откройте в Firefox страницу: about:addons
+${isFirefox ?
+      `1. Откройте в Firefox страницу: about:addons
 2. Нажмите на шестеренку вверху и выберите «Установить дополнение из файла...»
-3. Укажите этот файл для завершения установки.` 
-: 
-`1. Откройте в браузере страницу: chrome://extensions/
+3. Укажите этот файл для завершения установки.`
+      :
+      `1. Откройте в браузере страницу: chrome://extensions/
 2. В правом верхнем углу включите тумблер «Режим разработчика».
 3. Нажмите «Загрузить распакованное расширение» и выберите распакованные файлы.`
-}
+    }
 
 CONFIG:
 ${JSON.stringify(manifest, null, 2)}
@@ -325,6 +317,9 @@ function renderProductsGrid() {
 
   container.innerHTML = filtered.map(prod => {
     const isFav = state.favorites.includes(prod.id);
+    const amoBadge = prod.isOfficialFfAddon
+      ? `<span class="product-card-amo-badge" title="Официально опубликовано в каталоге Mozilla Firefox Add-ons (AMO)">🦊 AMO ✓</span>`
+      : "";
     return `
       <article class="product-card" data-id="${prod.id}">
         
@@ -345,7 +340,10 @@ function renderProductsGrid() {
 
         <!-- Область PNG картинки -->
         <div class="product-card-image-box" onclick="openDownloadModal('${prod.id}')">
-          <span class="product-card-badge">${prod.version}</span>
+          <div class="product-card-badges-row">
+            <span class="product-card-badge">${prod.version}</span>
+            ${amoBadge}
+          </div>
           <img 
             src="${prod.image}" 
             alt="${prod.title}" 
@@ -406,53 +404,30 @@ function openDownloadModal(productId) {
   document.getElementById("modalProdDesc").textContent = prod.description;
   document.getElementById("modalProdImg").src = prod.image;
 
-  document.getElementById("ffFileName").textContent = prod.firefoxFileName;
+  document.getElementById("ffFileName").textContent = prod.isOfficialFfAddon
+    ? "swagdev-huevo-themes (Firefox Add-ons)"
+    : prod.firefoxFileName;
   document.getElementById("crFileName").textContent = prod.chromiumFileName;
 
-  const githubLink = document.getElementById("modalGithubLink");
-  if (githubLink) {
-    if (prod.githubRepoUrl) {
-      githubLink.href = prod.githubRepoUrl;
-      githubLink.style.display = "inline-flex";
+  const ffChoiceFormat = document.getElementById("ffChoiceFormat");
+  if (ffChoiceFormat) {
+    if (prod.isOfficialFfAddon) {
+      ffChoiceFormat.innerHTML = `<span class="official-amo-tag">✓ Официальный каталог Mozilla Add-ons (в 1 клик)</span>`;
     } else {
-      githubLink.style.display = "none";
+      ffChoiceFormat.textContent = "Пакет расширения (.xpi)";
     }
   }
 
   const downloadFfBtn = document.getElementById("downloadFfFileBtn");
   if (downloadFfBtn) {
-    downloadFfBtn.href = prod.firefoxUrl || "#";
-    downloadFfBtn.setAttribute("download", prod.firefoxFileName);
     downloadFfBtn.onclick = (e) => {
       e.preventDefault();
       triggerDownloadFile(state.activeProduct, "firefox");
     };
   }
 
-  const downloadFfXpiBtn = document.getElementById("downloadFfXpiBtn");
-  if (downloadFfXpiBtn) {
-    const xpiUrl = prod.firefoxXpiUrl || prod.firefoxUrl || "#";
-    const xpiName = prod.firefoxXpiFileName || "addon.xpi";
-    downloadFfXpiBtn.href = xpiUrl;
-    downloadFfXpiBtn.setAttribute("download", xpiName);
-    downloadFfXpiBtn.onclick = (e) => {
-      e.preventDefault();
-      const a = document.createElement("a");
-      a.href = xpiUrl;
-      a.download = xpiName;
-      a.target = "_blank";
-      a.rel = "noopener noreferrer";
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      showToast(`Загрузка ${xpiName} запущена!`);
-    };
-  }
-
   const downloadCrBtn = document.getElementById("downloadCrFileBtn");
   if (downloadCrBtn) {
-    downloadCrBtn.href = prod.chromiumUrl || "#";
-    downloadCrBtn.setAttribute("download", prod.chromiumFileName);
     downloadCrBtn.onclick = (e) => {
       e.preventDefault();
       triggerDownloadFile(state.activeProduct, "chromium");
@@ -485,11 +460,21 @@ function selectBrowser(browserType) {
   audio.playClick();
   state.activeBrowserMode = browserType;
 
+  const prod = state.activeProduct;
+
   document.getElementById("stepBrowserSelect").style.display = "none";
 
   if (browserType === "firefox") {
+    renderFirefoxInstructions(prod);
     document.getElementById("instructionFirefoxPane").style.display = "block";
     document.getElementById("instructionChromiumPane").style.display = "none";
+
+    // Для официального аддона huEVO themes — сразу перенаправляем на страницу в Mozilla Add-ons в новой вкладке
+    if (prod && prod.isOfficialFfAddon && prod.firefoxUrl) {
+      window.open(prod.firefoxUrl, "_blank", "noopener,noreferrer");
+      audio.playSuccess();
+      showToast("Открываем страницу huEVO themes в Mozilla Add-ons!");
+    }
   } else {
     document.getElementById("instructionFirefoxPane").style.display = "none";
     document.getElementById("instructionChromiumPane").style.display = "block";
@@ -497,9 +482,155 @@ function selectBrowser(browserType) {
 
   const copyBtn = document.getElementById("modalCopyGuideBtn");
   copyBtn.style.display = "inline-block";
-  copyBtn.textContent = browserType === "firefox" 
-    ? "Скопировать инструкцию для Firefox" 
+  copyBtn.textContent = browserType === "firefox"
+    ? "Скопировать инструкцию для Firefox"
     : "Скопировать инструкцию для Chromium";
+}
+
+function renderFirefoxInstructions(prod) {
+  const heading = document.getElementById("ffInstructionHeading");
+  const pill = document.getElementById("ffBrowserPill");
+  const fileName = document.getElementById("ffFileName");
+  const fileTag = document.getElementById("ffFileTag");
+  const btn = document.getElementById("downloadFfFileBtn");
+  const btnIcon = document.getElementById("downloadFfBtnIcon");
+  const btnText = document.getElementById("downloadFfBtnText");
+  const directLink = document.getElementById("directFfXpiLink");
+  const timeline = document.getElementById("ffStepsTimeline");
+
+  if (!timeline) return;
+
+  if (prod && prod.isOfficialFfAddon) {
+    if (heading) heading.textContent = "Страница аддона открыта в новой вкладке Mozilla Add-ons";
+    if (pill) pill.innerHTML = "🦊 Mozilla Add-ons (AMO)";
+    if (fileName) fileName.textContent = "swagdev-huevo-themes";
+    if (fileTag) fileTag.innerHTML = "<span class='official-amo-tag'>✓ Официально проверено Mozilla · Версия 1.1.0</span>";
+
+    if (btn) {
+      btn.href = prod.firefoxUrl;
+      btn.removeAttribute("download");
+      btn.target = "_blank";
+      btn.rel = "noopener noreferrer";
+      btn.onclick = () => {
+        audio.playSuccess();
+        showToast("Открываем страницу в Mozilla Add-ons!");
+      };
+    }
+    if (btnIcon) btnIcon.textContent = "↗";
+    if (btnText) btnText.textContent = "Открыть в Firefox Add-ons еще раз";
+
+    if (directLink) {
+      if (prod.firefoxDirectXpiUrl) {
+        directLink.href = prod.firefoxDirectXpiUrl;
+        directLink.textContent = "Или скачать подписанный файл .xpi напрямую (16.7 МБ)";
+        directLink.style.display = "inline-block";
+        directLink.onclick = () => {
+          audio.playSuccess();
+          showToast("Загрузка подписанного файла .xpi...");
+        };
+      } else {
+        directLink.style.display = "none";
+      }
+    }
+
+    timeline.innerHTML = `
+      <li class="timeline-step">
+        <div class="step-badge">1</div>
+        <div class="step-content">
+          <strong>Страница аддона уже открыта в новой вкладке</strong>
+          <p>Если страница не открылась автоматически, нажмите синюю кнопку выше или перейдите по официальной ссылке:</p>
+          <div class="copy-url-block">
+            <a href="${prod.firefoxUrl}" target="_blank" rel="noopener noreferrer" class="vk-link-underline">addons.mozilla.org/en-US/firefox/addon/swagdev-huevo-themes/</a>
+            <button class="mini-copy-btn" type="button" data-target="${prod.firefoxUrl}">Копировать</button>
+          </div>
+        </div>
+      </li>
+      <li class="timeline-step">
+        <div class="step-badge">2</div>
+        <div class="step-content">
+          <strong>Нажмите синюю кнопку «+ Добавить в Firefox»</strong>
+          <p>На официальной странице каталога дополнений Mozilla нажмите кнопку <strong>«+ Добавить в Firefox»</strong> (Add to Firefox). Расширение подписано официальным ключом безопасности Mozilla.</p>
+        </div>
+      </li>
+      <li class="timeline-step">
+        <div class="step-badge">3</div>
+        <div class="step-content">
+          <strong>Подтвердите установку в системном окне</strong>
+          <p>В появившемся диалоговом окне Firefox в правом верхнем углу нажмите кнопку <strong>«Добавить»</strong>. Также по желанию отметьте галочку <em>«Разрешить этому расширению работать в приватных окнах»</em>.</p>
+        </div>
+      </li>
+      <li class="timeline-step">
+        <div class="step-badge">4</div>
+        <div class="step-content">
+          <strong>Готово к использованию!</strong>
+          <p>Плагин <strong>huEVO themes</strong> сразу активен на сайтах <code>huevo.su</code> и <code>huevo.departament.site</code>. В правом верхнем углу браузера появится значок дополнения для выбора тем и настроек.</p>
+        </div>
+      </li>
+    `;
+  } else {
+    if (heading) heading.textContent = "Пошаговая инструкция установки для Firefox";
+    if (pill) pill.innerHTML = "🦊 Mozilla Firefox";
+    if (fileName) fileName.textContent = prod.firefoxFileName;
+    if (fileTag) fileTag.textContent = "Готовый пакет .xpi";
+
+    if (btn) {
+      btn.href = "#";
+      btn.download = prod.firefoxFileName;
+      btn.removeAttribute("target");
+      btn.removeAttribute("rel");
+      btn.onclick = (e) => {
+        e.preventDefault();
+        triggerDownloadFile(state.activeProduct, "firefox");
+      };
+    }
+    if (btnIcon) btnIcon.textContent = "⬇";
+    if (btnText) btnText.textContent = "Скачать для Firefox (.xpi)";
+    if (directLink) directLink.style.display = "none";
+
+    timeline.innerHTML = `
+      <li class="timeline-step">
+        <div class="step-badge">1</div>
+        <div class="step-content">
+          <strong>Скачайте пакет расширения</strong>
+          <p>Нажмите синюю кнопку «Скачать для Firefox (.xpi)» выше и сохраните файл.</p>
+        </div>
+      </li>
+      <li class="timeline-step">
+        <div class="step-badge">2</div>
+        <div class="step-content">
+          <strong>Подтвердите установку в Firefox</strong>
+          <p>Если в верхнем правом углу браузера появится плашка <em>«Сайт пытается установить дополнение»</em>, нажмите <strong>«Разрешить»</strong>, а затем <strong>«Добавить»</strong>.</p>
+        </div>
+      </li>
+      <li class="timeline-step">
+        <div class="step-badge">3</div>
+        <div class="step-content">
+          <strong>Альтернативный способ установки (из файла):</strong>
+          <p>Перейдите в браузере по адресу <code class="copyable-tag" data-copy="about:addons" title="Кликните для копирования">about:addons</code> ➔ Нажмите на иконку ⚙️ шестерёнки вверху ➔ Выберите <em>«Установить дополнение из файла...»</em> ➔ Укажите скачанный <code>.xpi</code>.</p>
+        </div>
+      </li>
+      <li class="timeline-step">
+        <div class="step-badge">4</div>
+        <div class="step-content">
+          <strong>Готово к запуску!</strong>
+          <p>Иконка появится в меню дополнений Firefox. Продукт готов к работе.</p>
+        </div>
+      </li>
+    `;
+  }
+
+  timeline.querySelectorAll(".mini-copy-btn").forEach(b => {
+    b.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const target = b.getAttribute("data-target");
+      copyTextToClipboard(target, "Ссылка скопирована!");
+    });
+  });
+  timeline.querySelectorAll("[data-copy]").forEach(el => {
+    el.addEventListener("click", () => {
+      copyTextToClipboard(el.getAttribute("data-copy"), `Скопировано: ${el.getAttribute("data-copy")}`);
+    });
+  });
 }
 
 // ============================================================================
@@ -700,15 +831,26 @@ document.addEventListener("DOMContentLoaded", () => {
   if (backFfBtn) backFfBtn.addEventListener("click", showBrowserSelectStep);
   if (backCrBtn) backCrBtn.addEventListener("click", showBrowserSelectStep);
 
-  // Копирование инструкции
   const copyGuideBtn = document.getElementById("modalCopyGuideBtn");
   if (copyGuideBtn) {
     copyGuideBtn.addEventListener("click", () => {
       if (!state.activeProduct || !state.activeBrowserMode) return;
       const isFf = state.activeBrowserMode === "firefox";
-      const guideText = isFf
-        ? `ИНСТРУКЦИЯ ПО УСТАНОВКЕ В FIREFOX:\n1. Скачайте архив ${state.activeProduct.firefoxFileName}\n2. Откройте в адресной строке Firefox: about:debugging#/runtime/this-firefox\n3. В блоке «Временные дополнения» нажмите «Загрузить временное дополнение...»\n4. Выберите скачанный .zip или .xpi файл.`
-        : `ИНСТРУКЦИЯ ПО УСТАНОВКЕ В CHROMIUM:\n1. Скачайте архив ${state.activeProduct.chromiumFileName} и распакуйте его\n2. Откройте chrome://extensions/\n3. Включите «Режим разработчика» вверху справа\n4. Нажмите «Загрузить распакованное расширение» и укажите распакованную папку.`;
+      let guideText = "";
+      if (isFf) {
+        if (state.activeProduct.isOfficialFfAddon) {
+          guideText = `ИНСТРУКЦИЯ ПО УСТАНОВКЕ HUEVO THEMES В FIREFOX:
+1. Перейдите на страницу дополнения в официальном каталоге Mozilla Add-ons:
+${state.activeProduct.firefoxUrl}
+2. Нажмите синюю кнопку «+ Добавить в Firefox» (Add to Firefox).
+3. Во всплывающем системном окне подтверждения нажмите «Добавить».
+4. Готово! Расширение huEVO themes официально установлено, проверено Mozilla и готово к работе!`;
+        } else {
+          guideText = `ИНСТРУКЦИЯ ПО УСТАНОВКЕ В FIREFOX:\n1. Скачайте ${state.activeProduct.firefoxFileName}\n2. В появившемся окне Firefox нажмите «Разрешить» и «Добавить»\n3. Или перейдите в about:addons -> шестеренка -> «Установить дополнение из файла...»`;
+        }
+      } else {
+        guideText = `ИНСТРУКЦИЯ ПО УСТАНОВКЕ В CHROMIUM:\n1. Скачайте архив ${state.activeProduct.chromiumFileName} и распакуйте его\n2. Откройте chrome://extensions/\n3. Включите «Режим разработчика» вверху справа\n4. Нажмите «Загрузить распакованное расширение» и укажите распакованную папку.`;
+      }
       copyTextToClipboard(guideText, "Текст инструкции скопирован!");
     });
   }

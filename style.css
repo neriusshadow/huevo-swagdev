@@ -408,6 +408,20 @@ a:hover {
   transform: scale(1.03);
 }
 
+.product-card-badges-row {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  z-index: 2;
+}
+
+.product-card-badges-row .product-card-badge {
+  position: static;
+}
+
 .product-card-badge {
   position: absolute;
   top: 8px;
@@ -420,6 +434,21 @@ a:hover {
   border-radius: 3px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
   backdrop-filter: blur(2px);
+}
+
+.product-card-amo-badge {
+  background: linear-gradient(135deg, #e66020 0%, #c43800 100%);
+  color: #ffffff;
+  font-size: 9.5px;
+  font-weight: bold;
+  padding: 2px 6px;
+  border-radius: 3px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  letter-spacing: 0.2px;
+  border: 1px solid rgba(255, 255, 255, 0.35);
 }
 
 /* Описание карточки */
@@ -814,33 +843,9 @@ a:hover {
 }
 
 .modal-prod-version-row {
-  display: flex;
-  align-items: center;
-  gap: 8px;
   font-size: 11px;
   color: #777777;
   margin-bottom: 3px;
-}
-
-.modal-github-badge {
-  display: inline-flex;
-  align-items: center;
-  padding: 1px 7px;
-  background: #f0f4f8;
-  border: 1px solid #c2d1e0;
-  border-radius: 3px;
-  color: #2b587a;
-  font-size: 10.5px;
-  font-weight: 500;
-  text-decoration: none;
-  transition: all 0.15s ease;
-}
-
-.modal-github-badge:hover {
-  background: #e1ebf4;
-  border-color: #99b6d4;
-  color: #1a4261;
-  text-decoration: none;
 }
 
 .modal-prod-desc {
@@ -1084,44 +1089,41 @@ a:hover {
   background: linear-gradient(to bottom, #698eb8 0%, #4f739c 100%) !important;
 }
 
-.download-buttons-group {
+.download-action-bar-actions {
   display: flex;
-  align-items: center;
-  gap: 8px;
-  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 5px;
 }
 
-.secondary-vk-btn {
-  background: #f0f4f8 !important;
-  border: 1px solid #c2d1e0 !important;
-  color: #2b587a !important;
-  padding: 7px 12px !important;
-  font-size: 11.5px !important;
-  border-radius: 3px;
-  font-weight: 500;
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  cursor: pointer;
-  text-decoration: none !important;
-  transition: all 0.15s ease;
-}
-
-.secondary-vk-btn:hover {
-  background: #e2ebf4 !important;
-  border-color: #99b6d4 !important;
-  color: #1a4261 !important;
-}
-
-.firefox-security-hint {
-  margin: 8px 14px 2px 14px;
-  padding: 7px 12px;
-  background: #fffbe6;
-  border: 1px solid #ffe58f;
-  border-radius: 4px;
+.direct-xpi-link {
   font-size: 11px;
-  color: #7a5a00;
-  line-height: 1.45;
+  color: var(--vk-link);
+  text-decoration: underline;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: var(--vk-font);
+}
+
+.direct-xpi-link:hover {
+  color: var(--vk-link-hover);
+}
+
+.vk-link-underline {
+  color: var(--vk-link);
+  text-decoration: underline;
+  word-break: break-all;
+}
+
+.vk-link-underline:hover {
+  color: var(--vk-link-hover);
+}
+
+.official-amo-tag {
+  color: #c43800;
+  font-weight: bold;
 }
 
 /* Временная шкала шагов */
